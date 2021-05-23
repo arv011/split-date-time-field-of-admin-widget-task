@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="ml-5 mt-4">
+<div>
+    <h1 class="page-title text-dark font-weight-medium mb-2">Welcome</h1><br>
+    <h2 class="page-title text-dark font-weight-medium mb-2">Login</h2> <br>
+</div>
+<br>
+    <h1 class="page-title text-danger font-weight-medium mb-2"></h1> <br>  
+
+    <p>{% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <small class="text-danger fs-4"><b>user does not exist</b></small>
+        {% endfor %}
+    {% endif %}</p>
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class=" p-2 pl-4 pr-4 mt-3 bg-primary text-white">login</button>
+    </form>
+</div>
+<div class = "mt-4">
+    <p>New User! <a href ="{% url 'signup' %}" class= "fs-4 text-blue link-primary">Register Here</a></p>
+</div>
+</div>
+
+{% endblock content %}

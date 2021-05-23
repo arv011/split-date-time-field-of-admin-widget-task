@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}    
+
+{% block content %}
+    <script src="{% url 'js-catlog' %}"></script>
+    <script src="{% static '/admin/js/core.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+    
+    <h2 class = "fs-1">Master Incident</h2>
+    <h1 class = "fs-3">Initial Reporting</h1>
+    <form method="post" class = "mb-5 ml-4">
+        {% csrf_token %}
+        {{ form.media }}
+        {% for field in form %}
+            <div class="mb-1">
+                <div class="mt-4"><label for="{{ field.id_for_label }}" class="label">{{ field.html_name }}:</label></div>
+                <div class="p-2">
+                {% if field.html_name == 'reported_by' %}
+                    {{ name }}
+                {% else %}
+                    {{ field }}
+                {% endif %}
+                </div>
+                {% if field.html_name == 'Immidiate_action_taken' %}
+                    <br>
+                    <label class="label">Sub Incident Types:</label>                    
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class = "mt-5">
+            <button type="submit" class="btn btn-primary text-white mr-2">submit</button>
+            <a href="{% url 'Home' %}" class="btn btn-primary text-white mr-2 ">safe for later</a>
+            <a href="{% url 'Home' %}" class="btn btn-light mr-2">cancel</a>
+        
+        </div>
+        
+    </form>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        {% if request.user.is_authenticated %}
+            <p class="mb-1 text-success">Sucess: you are login Successfully</p>
+            <h3 class="page-title text-truncate text-dark display-4">Hello {{request.user.username}}</h3>
+        {% else %}
+            <p class="text-dark text-truncate mt-2">One can login and report an incident and saved incidents.<br>admin can view the forms</p>
+
+        {% endif %}
+    </div>
+{% endblock content %}
